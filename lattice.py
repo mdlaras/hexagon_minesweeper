@@ -14,12 +14,12 @@ class lattice_arr():
     def make_arrangement(self):
         form = random.randint(0,4) 
         if form == 0:
-            height = random.randint(2,15)
+            height = random.randint(2,8)
             for i in range(height):
                 self.arrmat[i] = (self.width,1)
             self.form = ["P", height,self.width]
         elif form == 1:
-            height = random.randrange(3,19,2)
+            height = random.randrange(3,9,2)
             if height == 3:
                 self.arrmat = [(self.width,0),(self.width+1,1),(self.width,0)]
             elif height>3:
@@ -33,7 +33,7 @@ class lattice_arr():
                 self.arrmat[height//2] = (self.width,0)
             self.form = ["A", height, self.width]
         elif form == 2:
-            height = random.randrange(3,19,2)
+            height = random.randrange(3,9,2)
             if height == 3:
                 self.arrmat = [(self.width,0),(self.width,0),(self.width,1)]
             elif height>3:
@@ -44,7 +44,7 @@ class lattice_arr():
                 self.arrmat[height//2] = (middle,0)
             self.form = ["B", height, self.width]
         elif form == 3:
-            height = random.randrange(3,19,2)
+            height = random.randrange(3,9,2)
             if height == 3:
                 self.arrmat = [(self.width,0),(self.width+1,0),(self.width,1)]
             elif height>3:
@@ -55,16 +55,15 @@ class lattice_arr():
                 self.arrmat[height//2] = (middle+1,0)
             self.form = ["C", height, self.width]
         elif form == 4:
-            l = random.randint(2,15)
-            m = random.randint(2,15)
+            l = random.randint(2,5)
+            m = random.randint(2,5)
             for i in range(l):
                 self.arrmat[i] = (self.width,0)
             for i in range(m):
                 self.arrmat[i] = (self.width,1)
             self.form = ["CH", l , m, self.width]
 
-    def draw_arr(self):
-        firstposition = (0,100)
+    def draw_arr(self, firstposition):
         for i in range(len(self.arrmat)):
             self.tile_coordinates[i] = {}
             self.turtle.up()

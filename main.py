@@ -1,14 +1,83 @@
 import polygon_turtle as pt
 import lattice
 import game
+import random
+import tkinter as tk 
 
-drew = pt.polygon_turtle()
-# a = lattice.lattice_arr(5,drew)
-# a.make_arrangement()
-# a.draw_arr()
-arr = {0:(6,0),1:(6,0),2:(6,0)}
-a = lattice.lattice_arr(6,drew,arr)
+def assemble_playground(turtle_name, canvas_name):
+    width = random.randint(3,6)
+    field = lattice.lattice_arr(width,turtle_name)
+    field.make_arrangement()
+    field.draw_arr((-250,250))
+    global tiles
+    tiles = game.code_tiles(field)
+    global character
+    character = game.character(canvas_name)
+    character.determine_startpos(tiles)
+    global narrator
+    narrator = game.identifier(canvas_name)
+    narrator.count_danger(character,tiles)
+    equip_label.configure(text=character.equipped_object)
+    danger_count_label.configure(text=narrator.counter)
+    status_label.configure(text=character.status)
 
-a.draw_arr()
-b = game.code_tiles(a)
-print(b)
+def show_equipment(equipment):
+    equip_label.configure(text=equipment)
+    narrator.count_danger(character,tiles)
+    danger_count_label.configure(text=narrator.counter)
+
+def go_and_check(direction):
+    character.goto_neighbor(direction,tiles)
+    narrator.determine_live(character,tiles)
+    status_label.configure(text=character.status)
+    narrator.count_danger(character,tiles)
+    danger_count_label.configure(text=narrator.counter)
+
+def main():
+    root = tk.Tk()
+    root.title('Hexagon Minesweeper')
+    Tcanvas = tk.Canvas(root)
+    Tcanvas.configure(width = 800, height= 500)
+    drew = pt.raw_polygon_turtle(canvas=Tcanvas)
+    drew.hideturtle()
+    start_button = tk.Button(root, text = "Start", command = lambda : assemble_playground(drew, Tcanvas))
+    goto1 = tk.Button(root,text="Go to 1", command = lambda: character.goto_neighbor(1, tiles))
+    goto2 = tk.Button(root,text="Go to 2", command = lambda: character.goto_neighbor(2, tiles))
+    goto3 = tk.Button(root,text="Go to 3", command = lambda: character.goto_neighbor(3, tiles))
+    goto4 = tk.Button(root,text="Go to 4", command = lambda: character.goto_neighbor(4, tiles))
+    goto5 = tk.Button(root,text="Go to 5", command = lambda: character.goto_neighbor(5, tiles))
+    goto6 = tk.Button(root,text="Go to 6", command = lambda: character.goto_neighbor(6, tiles))
+    equip1 = tk.Button(root,text="Equip 1", command = lambda: show_equipment("1"))
+    equip2 = tk.Button(root,text="Equip 2", command = lambda: show_equipment("2"))
+    equip3 = tk.Button(root,text="Equip 3", command = lambda: show_equipment("3"))
+    equip4 = tk.Button(root,text="Equip 4", command = lambda: show_equipment("4"))
+    equip5 = tk.Button(root,text="Equip 5", command = lambda: show_equipment("5"))
+    global equip_label
+    equip_label = tk.Label(root, text = ' ')
+    global danger_count_label 
+    danger_count_label = tk.Label(root, text = '')
+    global status_label
+    status_label = tk.Label(root, text = " ")
+    label_equip = tk.Label(root, text = "Equipped :")
+    label_danger = tk.Label(root, text = "Danger count : ")
+    start_button.grid(column=0, row = 0)
+    goto1.grid(column=0, row = 1)
+    goto2.grid(column=0, row = 2)
+    goto3.grid(column=0,row = 3)
+    goto4.grid(column=0,row = 4)
+    goto5.grid(column=0,row = 5)
+    goto6.grid(column=0,row = 6)
+    equip1.grid(column=0,row = 7)
+    equip2.grid(column=0,row = 8)
+    equip3.grid(column=0,row = 9)
+    equip4.grid(column=0,row = 10)
+    equip5.grid(column=0,row = 11)
+    Tcanvas.grid(column=1, row = 0, rowspan = 20)
+    label_equip.grid(column = 0, row = 12)
+    equip_label.grid(column = 0, row = 13)
+    label_danger.grid(column = 0, row = 14)
+    danger_count_label.grid(column = 0, row=15)
+    status_label.grid(column=0, row=16)
+    root.mainloop()
+if __name__ == "__main__":
+    main()
