@@ -9,6 +9,7 @@ class lattice_arr():
         self.arrmat = arrmat
         self.form = ["o", 0,0]
         self.kekule_count = 2
+        self.tile_coordinates = {}
 
     def make_arrangement(self):
         form = random.randint(0,4) 
@@ -65,6 +66,7 @@ class lattice_arr():
     def draw_arr(self):
         firstposition = (0,100)
         for i in range(len(self.arrmat)):
+            self.tile_coordinates[i] = {}
             self.turtle.up()
             self.turtle.goto(firstposition)
             self.turtle.setheading(0)
@@ -77,25 +79,14 @@ class lattice_arr():
             firstposition = self.turtle.pos()
             for j in range(self.arrmat[i][0]):
                 self.turtle.make_polygon(6)
+                self.turtle.up()
+                self.turtle.right(120)
+                self.turtle.forward(20)
+                self.turtle.down()
+                self.tile_coordinates[i][j] = self.turtle.pos()
+                self.turtle.up()
+                self.turtle.back(20)
+                self.turtle.setheading(0)
+                self.turtle.right(30)
+                self.turtle.down()
                 self.turtle.turn_to_neighbor(6,2)
-    
-    def count_kekule(self):
-        if self.form[0] == "P":
-            self.kekule_count = 8
-        elif self.form[0] == "A":
-            if self.form[1] == 3:
-                self.kekule_count = 9
-            elif self.form[1] == 5:
-                pass
-        elif self.form[0] == "B":
-            if self.form[1] == 3:
-                self.kekule_count = 9
-            elif self.form[1] == 5:
-                pass
-        elif self.form[0] == "C":
-            if self.form[1] == 3:
-                self.kekule_count = 9
-            elif self.form[1] == 5:
-                pass
-        elif self.form[0] == "CH":
-            pass
