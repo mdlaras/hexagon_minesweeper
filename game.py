@@ -17,7 +17,6 @@ def code_tiles(lattice_arr):
         for j in range(len(container[i])):
             coordinates = container[i][j][0]
             tile_code[coordinates] = container[i][j][1]
-    print(tile_code)
     return tile_code
 
 def count_distance(a,b):
@@ -196,7 +195,6 @@ class identifier():
             condition = tile_code[temp_pos] 
             if (condition - character.equipped_object)%5 == 1:
                 self.counter = self.counter + 1
-            print(self.counter)
         return self.counter
 
     def determine_live(self,character,tile_code):
