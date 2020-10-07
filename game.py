@@ -17,6 +17,7 @@ def code_tiles(lattice_arr):
         for j in range(len(container[i])):
             coordinates = container[i][j][0]
             tile_code[coordinates] = container[i][j][1]
+    print(tile_code)
     return tile_code
 
 def count_distance(a,b):
@@ -133,7 +134,6 @@ class identifier():
         elif direction ==2:
             self.turtle.forward(40)
             self.turtle.up()
-            self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
                 if count_distance(keys,self.turtle.pos()) < count_distance(clospos,self.turtle.pos()):
@@ -196,9 +196,12 @@ class identifier():
             condition = tile_code[temp_pos] 
             if (condition - character.equipped_object)%5 == 1:
                 self.counter = self.counter + 1
+            print(self.counter)
         return self.counter
 
     def determine_live(self,character,tile_code):
         position = character.position
         if (tile_code[position] - character.equipped_object)%5 == 1:    
             character.status="dead"
+        else :
+            character.status="alive"

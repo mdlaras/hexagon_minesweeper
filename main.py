@@ -23,6 +23,7 @@ def assemble_playground(turtle_name, canvas_name):
 
 def show_equipment(equipment):
     equip_label.configure(text=equipment)
+    character.change_equipment(int(equipment))
     narrator.count_danger(character,tiles)
     danger_count_label.configure(text=narrator.counter)
 
@@ -41,12 +42,12 @@ def main():
     drew = pt.raw_polygon_turtle(canvas=Tcanvas)
     drew.hideturtle()
     start_button = tk.Button(root, text = "Start", command = lambda : assemble_playground(drew, Tcanvas))
-    goto1 = tk.Button(root,text="Go to 1", command = lambda: character.goto_neighbor(1, tiles))
-    goto2 = tk.Button(root,text="Go to 2", command = lambda: character.goto_neighbor(2, tiles))
-    goto3 = tk.Button(root,text="Go to 3", command = lambda: character.goto_neighbor(3, tiles))
-    goto4 = tk.Button(root,text="Go to 4", command = lambda: character.goto_neighbor(4, tiles))
-    goto5 = tk.Button(root,text="Go to 5", command = lambda: character.goto_neighbor(5, tiles))
-    goto6 = tk.Button(root,text="Go to 6", command = lambda: character.goto_neighbor(6, tiles))
+    goto1 = tk.Button(root,text="Go to 1", command = lambda: go_and_check(1))
+    goto2 = tk.Button(root,text="Go to 2", command = lambda: go_and_check(2))
+    goto3 = tk.Button(root,text="Go to 3", command = lambda: go_and_check(3))
+    goto4 = tk.Button(root,text="Go to 4", command = lambda: go_and_check(4))
+    goto5 = tk.Button(root,text="Go to 5", command = lambda: go_and_check(5))
+    goto6 = tk.Button(root,text="Go to 6", command = lambda: go_and_check(6))
     equip1 = tk.Button(root,text="Equip 1", command = lambda: show_equipment("1"))
     equip2 = tk.Button(root,text="Equip 2", command = lambda: show_equipment("2"))
     equip3 = tk.Button(root,text="Equip 3", command = lambda: show_equipment("3"))
