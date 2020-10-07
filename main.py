@@ -5,6 +5,7 @@ import random
 import tkinter as tk 
 
 def assemble_playground(turtle_name, canvas_name):
+    canvas_name.delete()
     width = random.randint(3,6)
     field = lattice.lattice_arr(width,turtle_name)
     field.make_arrangement()
@@ -13,6 +14,7 @@ def assemble_playground(turtle_name, canvas_name):
     tiles = game.code_tiles(field)
     global character
     character = game.character(canvas_name)
+    character.up()
     character.determine_startpos(tiles)
     global narrator
     narrator = game.identifier(canvas_name)

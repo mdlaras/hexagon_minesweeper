@@ -54,7 +54,6 @@ class character(turtle.RawTurtle) :
             self.down()
             self.position = clospos
         elif direction ==2:
-            self.forward(40)
             self.up()
             self.forward(40)
             clospos = (900,900)
@@ -119,9 +118,10 @@ class identifier():
 
     def goto_neighbor(self, direction, tile_code):
         self.turtle.setheading(0)
+        self.turtle.up()
         if direction == 1:
-            self.turtle.left(60)
             self.turtle.up()
+            self.turtle.left(60)
             self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
@@ -129,20 +129,22 @@ class identifier():
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
         elif direction ==2:
-            self.turtle.forward(40)
             self.turtle.up()
+            self.turtle.forward(38)
             clospos = (900,900)
             for keys in tile_code.keys():
                 if count_distance(keys,self.turtle.pos()) < count_distance(clospos,self.turtle.pos()):
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
         elif direction == 3:
-            self.turtle.right(60)
             self.turtle.up()
+            self.turtle.right(60)
             self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
@@ -150,10 +152,11 @@ class identifier():
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
         elif direction == 4:
-            self.turtle.right(120)
             self.turtle.up()
+            self.turtle.right(120)
             self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
@@ -161,10 +164,10 @@ class identifier():
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
         elif direction == 5:
             self.turtle.right(180)
-            self.turtle.up()
             self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
@@ -172,10 +175,10 @@ class identifier():
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
         elif direction == 6:
             self.turtle.left(120)
-            self.turtle.up()
             self.turtle.forward(40)
             clospos = (900,900)
             for keys in tile_code.keys():
@@ -183,6 +186,7 @@ class identifier():
                     clospos = keys
             self.turtle.goto(clospos)
             self.turtle.down()
+            self.turtle.up()
             self.turtle.position = clospos
 
     def count_danger(self,character,tile_code):
