@@ -4,8 +4,10 @@ import game
 import random
 import tkinter as tk 
 
-def assemble_playground(turtle_name, canvas_name):
-    canvas_name.delete()
+def assemble_playground(canvas_name):
+    canvas_name.delete("all")
+    turtle_name = pt.raw_polygon_turtle(canvas=canvas_name)
+    turtle_name.hideturtle()
     width = random.randint(3,6)
     field = lattice.lattice_arr(width,turtle_name)
     field.make_arrangement()
@@ -43,18 +45,18 @@ def main():
     Tcanvas.configure(width = 800, height= 500)
     drew = pt.raw_polygon_turtle(canvas=Tcanvas)
     drew.hideturtle()
-    start_button = tk.Button(root, text = "Start", command = lambda : assemble_playground(drew, Tcanvas))
-    goto1 = tk.Button(root,text="Go to 1", command = lambda: go_and_check(1))
-    goto2 = tk.Button(root,text="Go to 2", command = lambda: go_and_check(2))
-    goto3 = tk.Button(root,text="Go to 3", command = lambda: go_and_check(3))
-    goto4 = tk.Button(root,text="Go to 4", command = lambda: go_and_check(4))
-    goto5 = tk.Button(root,text="Go to 5", command = lambda: go_and_check(5))
-    goto6 = tk.Button(root,text="Go to 6", command = lambda: go_and_check(6))
-    equip1 = tk.Button(root,text="Equip 1", command = lambda: show_equipment("1"))
-    equip2 = tk.Button(root,text="Equip 2", command = lambda: show_equipment("2"))
-    equip3 = tk.Button(root,text="Equip 3", command = lambda: show_equipment("3"))
-    equip4 = tk.Button(root,text="Equip 4", command = lambda: show_equipment("4"))
-    equip5 = tk.Button(root,text="Equip 5", command = lambda: show_equipment("5"))
+    start_button = tk.Button(root, text = "Start", command = lambda : assemble_playground(Tcanvas))
+    goto1 = tk.Button(root,text="Up Right", width = 10, command = lambda: go_and_check(1))
+    goto2 = tk.Button(root,text="Right", width = 10, command = lambda: go_and_check(2))
+    goto3 = tk.Button(root,text="Down Right", width = 10, command = lambda: go_and_check(3))
+    goto4 = tk.Button(root,text="Down Left", width = 10, command = lambda: go_and_check(4))
+    goto5 = tk.Button(root,text="Left", width = 10, command = lambda: go_and_check(5))
+    goto6 = tk.Button(root,text="Up Left", width = 10, command = lambda: go_and_check(6))
+    equip1 = tk.Button(root,text="Equip 1", width = 10,command = lambda: show_equipment("1"))
+    equip2 = tk.Button(root,text="Equip 2", width = 10, command = lambda: show_equipment("2"))
+    equip3 = tk.Button(root,text="Equip 3", width = 10, command = lambda: show_equipment("3"))
+    equip4 = tk.Button(root,text="Equip 4", width = 10, command = lambda: show_equipment("4"))
+    equip5 = tk.Button(root,text="Equip 5", width = 10,command = lambda: show_equipment("5"))
     global equip_label
     equip_label = tk.Label(root, text = ' ')
     global danger_count_label 

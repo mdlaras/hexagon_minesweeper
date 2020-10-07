@@ -197,13 +197,13 @@ class identifier():
             self.goto_neighbor(i, tile_code)
             temp_pos = self.turtle.pos()
             condition = tile_code[temp_pos] 
-            if (condition - character.equipped_object)%5 == 1:
+            if abs(condition - character.equipped_object) == 1:
                 self.counter = self.counter + 1
         return self.counter
 
     def determine_live(self,character,tile_code):
         position = character.position
-        if (tile_code[position] - character.equipped_object)%5 == 1:    
+        if abs(tile_code[position] - character.equipped_object) == 1:    
             character.status="dead"
         else :
             character.status="alive"
